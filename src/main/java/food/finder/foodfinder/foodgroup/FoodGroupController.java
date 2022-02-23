@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequiredArgsConstructor
-public final class FoodGroupController {
+final class FoodGroupController {
 
     private final UserRepository userRepository;
     private final FoodGroupRepository foodGroupRepository;

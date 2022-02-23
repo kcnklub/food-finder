@@ -15,12 +15,13 @@ import static org.springframework.data.neo4j.core.schema.Relationship.Direction.
 
 @Node
 @Getter
-public final class FoodGroup {
+final class FoodGroup {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
-    @Property("name")
+    @Property
     private final String name;
 
     @Relationship(type = "CREATED", direction = INCOMING)
@@ -29,8 +30,8 @@ public final class FoodGroup {
     @Relationship(type = "IN_A", direction = INCOMING)
     private final Set<User> usersInGroup = new HashSet<>();
 
-    public FoodGroup(String name,
-                     User creator) {
+    FoodGroup(String name,
+              User creator) {
         this.name = name;
         this.creator = creator;
     }
