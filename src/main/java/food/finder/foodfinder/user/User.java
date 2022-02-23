@@ -1,6 +1,8 @@
-package food.finder.foodfinder;
+package food.finder.foodfinder.user;
 
+import food.finder.foodfinder.Place;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Property;
@@ -11,6 +13,7 @@ import java.util.Set;
 
 @Node
 @Getter
+@Setter
 public final class User {
 
     @Id
@@ -20,7 +23,7 @@ public final class User {
     private final String username;
 
     @Relationship(type = "LIKED", direction = Relationship.Direction.OUTGOING)
-    private final Set<Place> likedPlaces = new HashSet<>();
+    private Set<Place> likedPlaces = new HashSet<>();
 
     public User(String email, String username) {
         this.email = email;

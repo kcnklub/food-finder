@@ -1,4 +1,4 @@
-package food.finder.foodfinder;
+package food.finder.foodfinder.user;
 
 import org.springframework.data.neo4j.repository.ReactiveNeo4jRepository;
 

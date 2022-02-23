@@ -1,5 +1,7 @@
-package food.finder.foodfinder;
+package food.finder.foodfinder.foodgroup;
 
+import food.finder.foodfinder.user.User;
+import lombok.Getter;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
@@ -12,6 +14,7 @@ import java.util.Set;
 import static org.springframework.data.neo4j.core.schema.Relationship.Direction.INCOMING;
 
 @Node
+@Getter
 public final class FoodGroup {
 
     @Id @GeneratedValue
@@ -20,10 +23,15 @@ public final class FoodGroup {
     @Property("name")
     private final String name;
 
-    @Relationship(type = "IN_A", direction = INCOMING)
-    private Set<User> usersInGroup = new HashSet<>();
+    @Relationship(type = "CREATED", direction = INCOMING)
+    private final User creator;
 
-    public FoodGroup(String name) {
+    @Relationship(type = "IN_A", direction = INCOMING)
+    private final Set<User> usersInGroup = new HashSet<>();
+
+    public FoodGroup(String name,
+                     User creator) {
         this.name = name;
+        this.creator = creator;
     }
 }

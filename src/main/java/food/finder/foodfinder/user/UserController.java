@@ -1,4 +1,4 @@
-package food.finder.foodfinder;
+package food.finder.foodfinder.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
