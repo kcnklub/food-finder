@@ -11,18 +11,13 @@ import reactor.core.publisher.Mono;
 @RestController
 class UserController {
 
+    private final UserService userService;
     private final UserRepository userRepository;
 
     @Transactional
     @PostMapping("/createNewUser")
     Mono<User> createNewUser(@RequestBody User user) {
-       return userRepository.existsById(user.getEmail())
-                .handle((exists, sink) -> {
-                    if(Boolean.TRUE.equals(exists)){
-                        sink.error(new UserFoundException("User already exists"));
-                    } else {
-                        sink.next(exists);
-                    }
-                }).then(userRepository.save(user));
+       return userService.makeSureNewUserDoesNotAlreadyExist(user.getEmail())
+               .then(userRepository.save(user));
     }
 }
