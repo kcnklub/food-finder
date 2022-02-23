@@ -1,4 +1,4 @@
-package food.finder.foodfinder;
+package food.finder.foodfinder.foodgroup;
 
 import org.neo4j.driver.internal.shaded.reactor.core.publisher.Mono;
 import org.springframework.data.neo4j.repository.ReactiveNeo4jRepository;
