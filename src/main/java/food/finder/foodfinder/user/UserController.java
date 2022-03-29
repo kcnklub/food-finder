@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
+import java.util.Date;
+
 @RequiredArgsConstructor
 @RestController
 class UserController {
@@ -18,6 +20,11 @@ class UserController {
     @PostMapping("/createNewUser")
     Mono<User> createNewUser(@RequestBody User user) {
        return userService.makeSureNewUserDoesNotAlreadyExist(user.getEmail())
-               .then(userRepository.save(user));
+               .then(saveUser(user));
+    }
+
+    Mono<User> saveUser(User user) {
+        user.setCreateDate(new Date());
+        return userRepository.save(user);
     }
 }
