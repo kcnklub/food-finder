@@ -8,6 +8,7 @@ import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Property;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,6 +22,9 @@ public final class User {
 
     @Property
     private final String username;
+
+    @Property
+    private Date createDate;
 
     @Relationship(type = "LIKED", direction = Relationship.Direction.OUTGOING)
     private Set<Place> likedPlaces = new HashSet<>();

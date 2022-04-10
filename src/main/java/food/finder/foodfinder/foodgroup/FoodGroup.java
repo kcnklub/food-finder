@@ -9,6 +9,7 @@ import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Property;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,6 +26,9 @@ final class FoodGroup {
 
     @Property
     private final String name;
+
+    @Property
+    private Date createdDate;
 
     @Relationship(type = "CREATED", direction = INCOMING)
     private final User creator;
