@@ -18,7 +18,6 @@ final class CreateFoodGroupService {
         return userRepository.findById(foodGroup.creatorEmail())
                 .flatMap(creator -> {
                     final var newGroup = new FoodGroup(foodGroup.groupName(), creator);
-                    newGroup.setCreatedDate(new Date());
                     newGroup.getUsersInGroup().add(creator);
                     return foodGroupRepository.save(newGroup);
                 });
